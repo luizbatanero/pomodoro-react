@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import TypeSelect from './TypeSelect';
-import TimeDisplay from './TimeDisplay';
-import Controls from './Controls';
+import TypeSelect from '../components/TypeSelect';
+import TimeDisplay from '../components/TimeDisplay';
+import Controls from '../components/Controls';
 import './Pomodoro.css';
 
 class Pomodoro extends Component {

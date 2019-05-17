@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatTime } from './helpers';
+import { formatTime } from '../helpers';
 
 const TimeDisplay = ({ time, status }) => {
   document.title = `(${formatTime(time)}) Pomodoro`;
