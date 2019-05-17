@@ -25,6 +25,7 @@ class Pomodoro extends Component {
 
   componentDidMount() {
     document.addEventListener('keyup', this.handleKeyUp);
+    Notification.requestPermission();
   }
 
   componentWillUnmount() {
@@ -50,6 +51,7 @@ class Pomodoro extends Component {
     if (this.state.time <= 1) {
       this.stopInterval();
       this.setState({ running: false });
+      new Notification(`${this.state.selectedType.name} finished!`);
     }
     this.setState(state => ({ time: state.time - 1 }));
   };
