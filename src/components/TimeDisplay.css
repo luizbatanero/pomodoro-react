@@ -1,0 +1,9 @@
+.TimeDisplay svg {
+    max-width: 300px;
+}
+
+.TimeDisplay circle {
+    transition: stroke-dashoffset 1s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}

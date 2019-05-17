@@ -86,6 +86,12 @@ class Pomodoro extends Component {
     if (running) return 'Running';
   };
 
+  getProgress = () => {
+    const current = this.state.time;
+    const total = this.state.selectedType.time;
+    return ((total - current) / total) * 100;
+  };
+
   render() {
     const { time, running, interval } = this.state;
     const { types } = this.props;
@@ -93,7 +99,11 @@ class Pomodoro extends Component {
     return (
       <div className="Pomodoro">
         <TypeSelect types={types} changeType={this.changeType} />
-        <TimeDisplay time={time} status={this.getStatus()} />
+        <TimeDisplay
+          time={time}
+          status={this.getStatus()}
+          progress={this.getProgress()}
+        />
         <Controls
           start={this.startTimer}
           reset={this.resetTimer}
