@@ -2,6 +2,8 @@ import React from 'react';
 import { formatTime } from './helpers';
 
 const TimeDisplay = ({ time }) => {
+  document.title = `${formatTime(time)}  |  Pomodoro`;
+
   return (
     <div className="TimeDisplay">
       <h1>{formatTime(time)}</h1>
