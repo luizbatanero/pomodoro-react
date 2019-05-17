@@ -93,12 +93,16 @@ class Pomodoro extends Component {
   };
 
   render() {
-    const { time, running, interval } = this.state;
+    const { time, running, interval, selectedType } = this.state;
     const { types } = this.props;
 
     return (
       <div className="Pomodoro">
-        <TypeSelect types={types} changeType={this.changeType} />
+        <TypeSelect
+          types={types}
+          selected={selectedType}
+          changeType={this.changeType}
+        />
         <TimeDisplay
           time={time}
           status={this.getStatus()}
