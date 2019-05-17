@@ -3,9 +3,9 @@ import React from 'react';
 const TypeSelect = ({ types, changeType }) => {
   return (
     <div className="TypeSelect">
-      {types.map(type => (
+      {types.map((type, index) => (
         <button key={type.name} onClick={() => changeType(type)}>
-          {type.name}
+          {type.name} <span>[{index + 1}]</span>
         </button>
       ))}
     </div>

@@ -23,6 +23,24 @@ class Pomodoro extends Component {
     ]
   };
 
+  componentDidMount() {
+    document.addEventListener('keyup', this.handleKeyUp);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.handleKeyUp);
+  }
+
+  handleKeyUp = event => {
+    if (event.key === ' ') {
+      this.pauseTimer();
+    } else if (event.key === 'Escape') {
+      this.resetTimer();
+    } else if (event.key >= 1 && event.key <= 3) {
+      this.changeType(this.props.types[event.key - 1]);
+    }
+  };
+
   changeType = type => {
     this.resetTimer();
     this.setState({ selectedType: type, time: type.time, running: false });
