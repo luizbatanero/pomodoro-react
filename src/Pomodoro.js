@@ -61,6 +61,13 @@ class Pomodoro extends Component {
     this.state.interval ? this.stopInterval() : this.startTimer();
   };
 
+  getStatus = () => {
+    const { time, running, interval } = this.state;
+    if (time === 0) return 'Finished';
+    if (running && !interval) return 'Paused';
+    if (running) return 'Running';
+  };
+
   render() {
     const { time, running, interval } = this.state;
     const { types } = this.props;
@@ -68,13 +75,14 @@ class Pomodoro extends Component {
     return (
       <div className="Pomodoro">
         <TypeSelect types={types} changeType={this.changeType} />
-        <TimeDisplay time={time} />
+        <TimeDisplay time={time} status={this.getStatus()} />
         <Controls
           start={this.startTimer}
           reset={this.resetTimer}
           pause={this.pauseTimer}
           running={running}
           interval={interval}
+          time={time}
         />
       </div>
     );

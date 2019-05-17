@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Controls = ({ start, reset, pause, running, interval }) => {
+const Controls = ({ start, reset, pause, running, interval, time }) => {
   return (
     <div className="Controls">
       {running === false ? (
-        <button onClick={start}>Start</button>
+        <button onClick={start}>
+          {time === 0 ? 'Restart timer' : 'Start timer'}
+        </button>
       ) : (
         <>
           <button onClick={reset}>Reset</button>
