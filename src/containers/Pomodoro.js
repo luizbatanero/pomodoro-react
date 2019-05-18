@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TypeSelect from '../components/TypeSelect';
 import TimeDisplay from '../components/TimeDisplay';
 import Controls from '../components/Controls';
+import ToggleSound from '../components/ToggleSound';
 import './Pomodoro.css';
 
 class Pomodoro extends Component {
@@ -11,7 +12,11 @@ class Pomodoro extends Component {
       selectedType: props.types[0],
       time: props.types[0].time,
       interval: null,
-      running: false
+      running: false,
+      sound:
+        window.localStorage.getItem('pomodoro-react-sound') !== null
+          ? JSON.parse(window.localStorage.getItem('pomodoro-react-sound'))
+          : true
     };
   }
 
@@ -53,7 +58,7 @@ class Pomodoro extends Component {
     if (this.state.time <= 1) {
       this.stopInterval();
       this.setState({ running: false });
-      this.sound.play();
+      if (this.state.sound) this.sound.play();
       new Notification(`${this.state.selectedType.name} finished!`);
     }
     this.setState(state => ({ time: state.time - 1 }));
@@ -70,6 +75,8 @@ class Pomodoro extends Component {
       interval: setInterval(this.tick, 1000),
       time: state.time > 0 ? state.time : state.selectedType.time
     }));
+    this.sound.pause();
+    this.sound.currentTime = 0;
   };
 
   resetTimer = () => {
@@ -97,8 +104,19 @@ class Pomodoro extends Component {
     return ((total - current) / total) * 100;
   };
 
+  handleToggleSound = () => {
+    this.setState(
+      state => ({
+        sound: !state.sound
+      }),
+      () => {
+        window.localStorage.setItem('pomodoro-react-sound', this.state.sound);
+      }
+    );
+  };
+
   render() {
-    const { time, running, interval, selectedType } = this.state;
+    const { time, running, interval, selectedType, sound } = this.state;
     const { types } = this.props;
 
     return (
@@ -121,6 +139,7 @@ class Pomodoro extends Component {
           interval={interval}
           time={time}
         />
+        <ToggleSound sound={sound} toggleSound={this.handleToggleSound} />
       </div>
     );
   }
