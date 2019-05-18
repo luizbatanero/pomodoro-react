@@ -1,0 +1,60 @@
+.Controls, .Controls div {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+.Controls button {
+    height: 40px;
+    border-radius: 40px;
+    border: 0;
+    flex: 1;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    position: relative;
+    outline: 0;
+    transition: all .3s;
+    padding: 0;
+}
+
+.Controls button.start {
+    background: #D9534F;
+    color: #fff;
+}
+
+.Controls button.start:hover {
+    background: #b64441;
+}
+
+.Controls button.reset {
+    background: transparent;
+    flex: 0;
+    margin-right: 25px;
+    color: #888;
+}
+
+.Controls button.reset:hover {
+    color: #666;
+}
+
+.Controls button.pause {
+    background: #eea73c;
+    color: #fff;
+}
+
+.Controls button.pause:hover {
+    background: #d3912f;
+}
+
+.Controls button.resume {
+    background: #91b62d;
+    color: #fff;
+}
+
+.Controls button.resume:hover {
+    background: #7d9e23;
+}
