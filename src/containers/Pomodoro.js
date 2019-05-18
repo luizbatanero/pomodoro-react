@@ -59,7 +59,9 @@ class Pomodoro extends Component {
       this.stopInterval();
       this.setState({ running: false });
       if (this.state.sound) this.sound.play();
-      new Notification(`${this.state.selectedType.name} finished!`);
+      try {
+        new Notification(`${this.state.selectedType.name} finished!`);
+      } catch {}
     }
     this.setState(state => ({ time: state.time - 1 }));
   };
