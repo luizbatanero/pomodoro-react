@@ -26,6 +26,7 @@ class Pomodoro extends Component {
   componentDidMount() {
     document.addEventListener('keyup', this.handleKeyUp);
     Notification.requestPermission();
+    this.sound = new Audio('bell.flac');
   }
 
   componentWillUnmount() {
@@ -51,6 +52,7 @@ class Pomodoro extends Component {
     if (this.state.time <= 1) {
       this.stopInterval();
       this.setState({ running: false });
+      this.sound.play();
       new Notification(`${this.state.selectedType.name} finished!`);
     }
     this.setState(state => ({ time: state.time - 1 }));
