@@ -27,6 +27,7 @@ class Pomodoro extends Component {
     document.addEventListener('keyup', this.handleKeyUp);
     Notification.requestPermission();
     this.sound = new Audio('bell.flac');
+    this.sound.preload = 'auto';
   }
 
   componentWillUnmount() {
