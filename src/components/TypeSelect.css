@@ -1,0 +1,46 @@
+.TypeSelect {
+    width: 400px;
+    display: flex;
+}
+
+@media screen and (max-width: 500px) {
+    .TypeSelect {
+        width: 100%;
+    }
+}
+
+.TypeSelect button {
+    flex: 1;
+    border: 2px solid #D9534F;
+    border-right: 0;
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    color: #D9534F;
+    outline: 0;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.TypeSelect button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.TypeSelect button:last-child {
+    border-right: 2px solid #D9534F;
+    border-radius: 0 5px 5px 0;
+}
+
+.TypeSelect button span {
+    display: inline-block;
+    font-size: .65em;
+    transform: translateY(-50%);
+    font-weight: bold;
+    letter-spacing: .5px;
+}
+
+.TypeSelect button.active {
+    background: #D9534F;
+    color: #fff;
+}

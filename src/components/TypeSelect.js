@@ -1,4 +1,5 @@
 import React from 'react';
+import './TypeSelect.css';
 
 const TypeSelect = ({ types, changeType, selected }) => {
   return (
@@ -7,9 +8,7 @@ const TypeSelect = ({ types, changeType, selected }) => {
         <button
           key={type.name}
           onClick={() => changeType(type)}
-          style={{
-            fontWeight: type === selected ? 'bold' : 'normal'
-          }}
+          className={type === selected ? 'active' : ''}
         >
           {type.name} <span>[{index + 1}]</span>
         </button>
