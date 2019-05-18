@@ -16,14 +16,14 @@ const TimeDisplay = ({ time, status, progress }) => {
       <svg width="100%" viewBox={`0 0 ${radius * 2} ${radius * 2}`}>
         <circle
           stroke="#ddd"
-          fill="none"
+          fill="#fff"
           strokeWidth={stroke}
           r={normalizedRadius}
           cx={radius}
           cy={radius}
         />
         <circle
-          stroke="red"
+          stroke="#D9534F"
           fill="transparent"
           strokeWidth={stroke}
           strokeDasharray={circumference + ' ' + circumference}
@@ -33,8 +33,10 @@ const TimeDisplay = ({ time, status, progress }) => {
           cy={radius}
         />
       </svg>
-      <h1>{formatTime(time)}</h1>
-      <p>{status}</p>
+      <div>
+        <h1>{formatTime(time)}</h1>
+        <p>{status}</p>
+      </div>
     </div>
   );
 };

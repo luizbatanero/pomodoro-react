@@ -1,8 +1,9 @@
 import React from 'react';
+import './ToggleSound.css';
 
 const ToggleSound = ({ sound, toggleSound }) => {
   return (
-    <button onClick={toggleSound}>
+    <button className="ToggleSound" onClick={toggleSound}>
       {sound ? 'Disable Sound' : 'Enable Sound'}
     </button>
   );
