@@ -39,7 +39,7 @@ class Pomodoro extends Component {
       this.pauseTimer();
     } else if (event.key === 'Escape') {
       this.resetTimer();
-    } else if (event.key >= 1 && event.key <= 3) {
+    } else if (event.key >= 1 && event.key <= this.props.types.length) {
       this.changeType(this.props.types[event.key - 1]);
     }
   };
