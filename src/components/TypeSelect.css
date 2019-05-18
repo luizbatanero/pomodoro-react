@@ -11,13 +11,13 @@
 
 .TypeSelect button {
     flex: 1;
-    border: 2px solid #D9534F;
+    border: 2px solid #ccc;
     border-right: 0;
     background: transparent;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     padding: 10px;
-    color: #D9534F;
+    color: #999;
     outline: 0;
     transition: all .3s;
     cursor: pointer;
@@ -28,7 +28,7 @@
 }
 
 .TypeSelect button:last-child {
-    border-right: 2px solid #D9534F;
+    border-right: 2px solid #ccc;
     border-radius: 0 5px 5px 0;
 }
 
@@ -38,9 +38,11 @@
     transform: translateY(-50%);
     font-weight: bold;
     letter-spacing: .5px;
+    color: #999;
 }
 
 .TypeSelect button.active {
-    background: #D9534F;
-    color: #fff;
+    background: #fff;
+    color: #D9534F;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .12);
 }
