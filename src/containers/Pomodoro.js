@@ -60,7 +60,9 @@ class Pomodoro extends Component {
       this.setState({ running: false });
       if (this.state.sound) this.sound.play();
       try {
-        new Notification(`${this.state.selectedType.name} finished!`);
+        navigator.serviceWorker.register('service-worker.js').then(sw => {
+          sw.showNotification(`${this.state.selectedType.name} finished!`);
+        });
       } catch (e) {
         console.log('Notification error', e);
       }
