@@ -61,7 +61,9 @@ class Pomodoro extends Component {
       if (this.state.sound) this.sound.play();
       try {
         new Notification(`${this.state.selectedType.name} finished!`);
-      } catch {}
+      } catch (e) {
+        console.log('Notification error', e);
+      }
     }
     this.setState(state => ({ time: state.time - 1 }));
   };
@@ -118,7 +120,7 @@ class Pomodoro extends Component {
   };
 
   render() {
-    const { time, running, interval, selectedType, sound } = this.state;
+    const { time, selectedType, sound } = this.state;
     const { types } = this.props;
 
     return (
@@ -137,9 +139,7 @@ class Pomodoro extends Component {
           start={this.startTimer}
           reset={this.resetTimer}
           pause={this.pauseTimer}
-          running={running}
-          interval={interval}
-          time={time}
+          status={this.getStatus()}
         />
         <ToggleSound sound={sound} toggleSound={this.handleToggleSound} />
       </div>

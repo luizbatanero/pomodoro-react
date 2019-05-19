@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './TypeSelect.css';
 
 const TypeSelect = ({ types, changeType, selected }) => {
@@ -17,4 +17,4 @@ const TypeSelect = ({ types, changeType, selected }) => {
   );
 };
 
-export default TypeSelect;
+export default memo(TypeSelect);

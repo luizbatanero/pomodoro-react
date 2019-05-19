@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './ToggleSound.css';
 
 const ToggleSound = ({ sound, toggleSound }) => {
@@ -13,4 +13,4 @@ const ToggleSound = ({ sound, toggleSound }) => {
   );
 };
 
-export default ToggleSound;
+export default memo(ToggleSound);

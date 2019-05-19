@@ -1,25 +1,46 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './Controls.css';
 
-const Controls = ({ start, reset, pause, running, interval, time }) => {
-  return (
-    <div className="Controls">
-      {running === false ? (
-        <button onClick={start} className="start">
-          {time === 0 ? 'Restart timer' : 'Start timer'}
+const Controls = ({ start, reset, pause, status }) => {
+  let controls;
+
+  if (!status) {
+    controls = (
+      <button onClick={start} className="start">
+        Start Timer
+      </button>
+    );
+  } else if (status === 'Finished') {
+    controls = (
+      <button onClick={start} className="start">
+        Restart Timer
+      </button>
+    );
+  } else if (status === 'Paused') {
+    controls = (
+      <div>
+        <button onClick={reset} className="reset">
+          Reset
         </button>
-      ) : (
-        <div>
-          <button onClick={reset} className="reset">
-            Reset
-          </button>
-          <button onClick={pause} className={interval ? 'pause' : 'resume'}>
-            {interval ? 'Pause' : 'Resume'}
-          </button>
-        </div>
-      )}
-    </div>
-  );
+        <button onClick={pause} className="resume">
+          Resume
+        </button>
+      </div>
+    );
+  } else {
+    controls = (
+      <div>
+        <button onClick={reset} className="reset">
+          Reset
+        </button>
+        <button onClick={pause} className="pause">
+          Pause
+        </button>
+      </div>
+    );
+  }
+
+  return <div className="Controls">{controls}</div>;
 };
 
-export default Controls;
+export default memo(Controls);
