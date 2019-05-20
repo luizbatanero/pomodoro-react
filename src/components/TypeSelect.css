@@ -32,15 +32,6 @@
     border-radius: 0 5px 5px 0;
 }
 
-.TypeSelect button span {
-    display: inline-block;
-    font-size: .65em;
-    transform: translateY(-50%);
-    font-weight: bold;
-    letter-spacing: .5px;
-    color: #999;
-}
-
 .TypeSelect button.active {
     background: #fff;
     color: #D9534F;

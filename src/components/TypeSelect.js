@@ -10,7 +10,7 @@ const TypeSelect = ({ types, changeType, selected }) => {
           onClick={() => changeType(type)}
           className={type === selected ? 'active' : ''}
         >
-          {type.name} <span>[{index + 1}]</span>
+          {type.name}
         </button>
       ))}
     </div>

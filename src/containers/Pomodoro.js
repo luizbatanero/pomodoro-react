@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TypeSelect from '../components/TypeSelect';
 import TimeDisplay from '../components/TimeDisplay';
 import Controls from '../components/Controls';
+import Shortcuts from '../components/Shortcuts';
 import ToggleSound from '../components/ToggleSound';
 import './Pomodoro.css';
 
@@ -143,6 +144,7 @@ class Pomodoro extends Component {
           pause={this.pauseTimer}
           status={this.getStatus()}
         />
+        <Shortcuts />
         <ToggleSound sound={sound} toggleSound={this.handleToggleSound} />
       </div>
     );
