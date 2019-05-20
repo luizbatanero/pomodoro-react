@@ -1,7 +1,7 @@
 # Pomodoro React
 :tomato: Pomodoro timer built with React
 
-### :point_right: [Demo](https://luizbatanero.github.io/pomodoro-react/)
+### [Live Demo](https://luizbatanero.github.io/pomodoro-react/)
 
 ![Screenshot](screenshot.png)
 
@@ -9,7 +9,7 @@
 
 * Keyboard Shortcuts
 * HTML5 Notification
-* Audio Notification (configurable)
+* Audio Notification
 
 ## Running Locally
 
