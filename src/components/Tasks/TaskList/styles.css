@@ -1,5 +1,5 @@
 .Tasks {
-  width: 100%;
+  width: 400px;
   height: 300px;
   overflow-y: scroll;
 }
@@ -13,7 +13,7 @@
 }
 
 .Task {
-  width: 100%;
+  width: 400px;
   background: #fff;
   display: flex;
   border-bottom: 1px solid #eee;
