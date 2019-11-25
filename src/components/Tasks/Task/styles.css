@@ -1,0 +1,6 @@
+.Dragging {
+  opacity: 0.5;
+  border: 2px dashed rgba(0, 0, 0, 1);
+  cursor: grabbing;
+  background-color: rgba(0, 0, 0, 0.1);
+}

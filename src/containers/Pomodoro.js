@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import TypeSelect from '../components/TypeSelect';
-import TimeDisplay from '../components/TimeDisplay';
-import Controls from '../components/Controls';
-import Shortcuts from '../components/Shortcuts';
-import ToggleSound from '../components/ToggleSound';
-import './Pomodoro.css';
+import React, { Component } from "react";
+import TypeSelect from "../components/TypeSelect";
+import TimeDisplay from "../components/TimeDisplay";
+import Controls from "../components/Controls";
+import Shortcuts from "../components/Shortcuts";
+import ToggleSound from "../components/ToggleSound";
+import ToggleTask from "../components/Tasks/TaskToggle";
+import TaskList from "../components/Tasks/TaskList";
+import "./Pomodoro.css";
 
 class Pomodoro extends Component {
   constructor(props) {
@@ -15,35 +17,37 @@ class Pomodoro extends Component {
       interval: null,
       running: false,
       sound:
-        window.localStorage.getItem('pomodoro-react-sound') !== null
-          ? JSON.parse(window.localStorage.getItem('pomodoro-react-sound'))
-          : true
+        JSON.parse(window.localStorage.getItem("pomodoro-react-sound")) || true,
+      taskStatus:
+        JSON.parse(window.localStorage.getItem("pomodoro-react-taskStatus")) ||
+        null
     };
   }
 
   static defaultProps = {
     types: [
-      { name: 'Pomodoro', time: 1500 },
-      { name: 'Short Break', time: 300 },
-      { name: 'Long Break', time: 900 }
+      { name: "Pomodoro", time: 1500 },
+      { name: "Short Break", time: 300 },
+      { name: "Long Break", time: 900 }
     ]
   };
 
   componentDidMount() {
-    document.addEventListener('keyup', this.handleKeyUp);
+    document.addEventListener("keyup", this.handleKeyUp);
     Notification.requestPermission();
-    this.sound = new Audio('bell.flac');
-    this.sound.preload = 'auto';
+    this.sound = new Audio("bell.flac");
+    this.sound.preload = "auto";
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', this.handleKeyUp);
+    document.removeEventListener("keyup", this.handleKeyUp);
   }
 
   handleKeyUp = event => {
-    if (event.key === ' ') {
+    if (event.target.tagName === "INPUT") return;
+    if (event.key === " ") {
       this.pauseTimer();
-    } else if (event.key === 'Escape') {
+    } else if (event.key === "Escape") {
       this.resetTimer();
     } else if (event.key >= 1 && event.key <= this.props.types.length) {
       this.changeType(this.props.types[event.key - 1]);
@@ -61,11 +65,11 @@ class Pomodoro extends Component {
       this.setState({ running: false });
       if (this.state.sound) this.sound.play();
       try {
-        navigator.serviceWorker.register('service-worker.js').then(sw => {
+        navigator.serviceWorker.register("service-worker.js").then(sw => {
           sw.showNotification(`${this.state.selectedType.name} finished!`);
         });
       } catch (e) {
-        console.log('Notification error', e);
+        console.log("Notification error", e);
       }
     }
     this.setState(state => ({ time: state.time - 1 }));
@@ -100,9 +104,9 @@ class Pomodoro extends Component {
 
   getStatus = () => {
     const { time, running, interval } = this.state;
-    if (time === 0) return 'Finished';
-    if (running && !interval) return 'Paused';
-    if (running) return 'Running';
+    if (time === 0) return "Finished";
+    if (running && !interval) return "Paused";
+    if (running) return "Running";
   };
 
   getProgress = () => {
@@ -117,35 +121,57 @@ class Pomodoro extends Component {
         sound: !state.sound
       }),
       () => {
-        window.localStorage.setItem('pomodoro-react-sound', this.state.sound);
+        window.localStorage.setItem("pomodoro-react-sound", this.state.sound);
+      }
+    );
+  };
+
+  handleToggleTask = () => {
+    this.setState(
+      state => ({
+        taskStatus: !state.taskStatus
+      }),
+      () => {
+        window.localStorage.setItem(
+          "pomodoro-react-taskStatus",
+          this.state.taskStatus
+        );
       }
     );
   };
 
   render() {
-    const { time, selectedType, sound } = this.state;
+    const { time, selectedType, sound, taskStatus } = this.state;
     const { types } = this.props;
 
     return (
-      <div className="Pomodoro">
-        <TypeSelect
-          types={types}
-          selected={selectedType}
-          changeType={this.changeType}
-        />
-        <TimeDisplay
-          time={time}
-          status={this.getStatus()}
-          progress={this.getProgress()}
-        />
-        <Controls
-          start={this.startTimer}
-          reset={this.resetTimer}
-          pause={this.pauseTimer}
-          status={this.getStatus()}
-        />
-        <Shortcuts />
-        <ToggleSound sound={sound} toggleSound={this.handleToggleSound} />
+      <div className="Content">
+        <div className="Pomodoro">
+          <TypeSelect
+            types={types}
+            selected={selectedType}
+            changeType={this.changeType}
+          />
+          <TimeDisplay
+            time={time}
+            status={this.getStatus()}
+            progress={this.getProgress()}
+          />
+          <Controls
+            start={this.startTimer}
+            reset={this.resetTimer}
+            pause={this.pauseTimer}
+            status={this.getStatus()}
+          />
+          <ToggleTask task={taskStatus} toggleTask={this.handleToggleTask} />
+          <Shortcuts />
+          <ToggleSound sound={sound} toggleSound={this.handleToggleSound} />
+        </div>
+        {taskStatus && (
+          <div className="TaskPainel">
+            <TaskList />
+          </div>
+        )}
       </div>
     );
   }
