@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import "./styles.css";
+import React, { memo } from 'react';
+import './styles.css';
 
 const TypeSelect = ({ types, changeType, selected }) => (
   <div className="TypeSelect">
@@ -7,7 +7,7 @@ const TypeSelect = ({ types, changeType, selected }) => (
       <button
         key={type.name}
         onClick={() => changeType(type)}
-        className={type === selected ? "active" : ""}
+        className={type === selected ? 'active' : ''}
       >
         {type.name}
       </button>

@@ -1,26 +1,26 @@
-import React, { memo, useState, useEffect } from "react";
-import produce from "immer";
-import TaskContext from "./context";
-import Task from "../Task";
-import TypeSelect from "../../TypeSelect";
+import React, { memo, useState, useEffect } from 'react';
+import produce from 'immer';
+import TaskContext from './context';
+import Task from '../Task';
+import TypeSelect from '../../TypeSelect';
 
-import "./styles.css";
+import './styles.css';
 
 const TaskList = ({ selectedTaskType }) => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const taskStatus = [
-    { name: "All", value: -1 },
-    { name: "Open", value: false },
-    { name: "Closed", value: true }
+    { name: 'All', value: -1 },
+    { name: 'Open', value: false },
+    { name: 'Closed', value: true }
   ];
 
   const [tasks, setTasks] = useState(
-    JSON.parse(window.localStorage.getItem("pomodoro-react-tasks")) || []
+    JSON.parse(window.localStorage.getItem('pomodoro-react-tasks')) || []
   );
   const [selectedStatus, setSelectedStatus] = useState(taskStatus[0]);
 
   useEffect(() => {
-    window.localStorage.setItem("pomodoro-react-tasks", JSON.stringify(tasks));
+    window.localStorage.setItem('pomodoro-react-tasks', JSON.stringify(tasks));
   }, [tasks]);
 
   function move(from, to) {
@@ -34,7 +34,7 @@ const TaskList = ({ selectedTaskType }) => {
   }
 
   function handleStatus(task) {
-    console.log("task:", task);
+    console.log('task:', task);
     setTasks(
       produce(tasks, draft => {
         const foundIndex = draft.findIndex(item => item.id === task.id);
@@ -49,7 +49,7 @@ const TaskList = ({ selectedTaskType }) => {
         draft.push({ id: draft.length + 1, title: input, closed: false });
       })
     );
-    setInput("");
+    setInput('');
   }
 
   return (
@@ -82,7 +82,7 @@ const TaskList = ({ selectedTaskType }) => {
           onChange={e => setInput(e.target.value)}
           placeholder="New Task"
         />
-        <span onClick={addTask}>{"Add"}</span>
+        <span onClick={addTask}>{'Add'}</span>
       </div>
     </TaskContext.Provider>
   );

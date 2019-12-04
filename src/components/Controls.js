@@ -20,7 +20,10 @@ const Controls = ({ start, reset, pause, status }) => (
         <button onClick={reset} className="reset">
           Reset
         </button>
-        <button onClick={pause} className={status === 'Paused' ? 'resume' : 'pause'}>
+        <button
+          onClick={pause}
+          className={status === 'Paused' ? 'resume' : 'pause'}
+        >
           {status === 'Paused' ? 'Resume' : 'Pause'}
         </button>
       </div>

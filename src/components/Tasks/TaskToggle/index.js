@@ -1,13 +1,13 @@
-import React, { memo } from "react";
-import "./styles.css";
+import React, { memo } from 'react';
+import './styles.css';
 
 const TaskToggle = ({ task, toggleTask }) => (
   <button
-    className={`ToggleTask ${task && "active"}`}
+    className={`ToggleTask ${task && 'active'}`}
     onClick={toggleTask}
-    title={task ? "Disable Task" : "Enable Task"}
+    title={task ? 'Disable Task' : 'Enable Task'}
   >
-    <i className={"fa fa-tasks"} />
+    <i className={'fa fa-tasks'} />
   </button>
 );
 

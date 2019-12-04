@@ -1,21 +1,21 @@
-import React, { useRef, useContext } from "react";
-import { useDrag, useDrop } from "react-dnd";
-import "./styles.css";
+import React, { useRef, useContext } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
+import './styles.css';
 
-import TaskContext from "../TaskList/context";
+import TaskContext from '../TaskList/context';
 
 export default function Task({ task, index }) {
   const ref = useRef();
   const { move, handleStatus } = useContext(TaskContext);
   const [{ isDragging }, dragRef] = useDrag({
-    item: { type: "TASK", id: task.id, index },
+    item: { type: 'TASK', id: task.id, index },
     collect: monitor => ({
       isDragging: monitor.isDragging()
     })
   });
 
   const [, dropRef] = useDrop({
-    accept: "TASK",
+    accept: 'TASK',
     hover(item, monitor) {
       if (item.id === task.id) return;
       const dragged = item;
@@ -36,10 +36,10 @@ export default function Task({ task, index }) {
   dragRef(dropRef(ref));
 
   return (
-    <div ref={ref} className={isDragging ? "Task Dragging" : "Task"}>
+    <div ref={ref} className={isDragging ? 'Task Dragging' : 'Task'}>
       <div>{task.title}</div>
       <span onClick={() => handleStatus(task)}>
-        {task.closed ? "Open" : "Close"}
+        {task.closed ? 'Open' : 'Close'}
       </span>
     </div>
   );
