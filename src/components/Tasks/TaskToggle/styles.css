@@ -1,0 +1,21 @@
+.ToggleTask {
+  position: absolute;
+  width: 27px;
+  height: 24px;
+  right: 115px;
+  top: 25px;
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+  color: #666;
+  opacity: 0.5;
+  transition: all 0.3s;
+  outline: 0;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.ToggleTask.active {
+  opacity: 1;
+}

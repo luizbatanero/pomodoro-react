@@ -4,6 +4,8 @@ import TimeDisplay from '../components/TimeDisplay';
 import Controls from '../components/Controls';
 import Shortcuts from '../components/Shortcuts';
 import ToggleSound from '../components/ToggleSound';
+import ToggleTask from '../components/Tasks/TaskToggle';
+import TaskList from '../components/Tasks/TaskList';
 import './Pomodoro.css';
 
 class Pomodoro extends Component {
@@ -15,9 +17,10 @@ class Pomodoro extends Component {
       interval: null,
       running: false,
       sound:
-        window.localStorage.getItem('pomodoro-react-sound') !== null
-          ? JSON.parse(window.localStorage.getItem('pomodoro-react-sound'))
-          : true
+        JSON.parse(window.localStorage.getItem('pomodoro-react-sound')) || true,
+      taskStatus:
+        JSON.parse(window.localStorage.getItem('pomodoro-react-taskStatus')) ||
+        null
     };
   }
 
@@ -41,6 +44,7 @@ class Pomodoro extends Component {
   }
 
   handleKeyUp = event => {
+    if (event.target.tagName === 'INPUT') return;
     if (event.key === ' ') {
       this.pauseTimer();
     } else if (event.key === 'Escape') {
@@ -122,30 +126,52 @@ class Pomodoro extends Component {
     );
   };
 
+  handleToggleTask = () => {
+    this.setState(
+      state => ({
+        taskStatus: !state.taskStatus
+      }),
+      () => {
+        window.localStorage.setItem(
+          'pomodoro-react-taskStatus',
+          this.state.taskStatus
+        );
+      }
+    );
+  };
+
   render() {
-    const { time, selectedType, sound } = this.state;
+    const { time, selectedType, sound, taskStatus } = this.state;
     const { types } = this.props;
 
     return (
-      <div className="Pomodoro">
-        <TypeSelect
-          types={types}
-          selected={selectedType}
-          changeType={this.changeType}
-        />
-        <TimeDisplay
-          time={time}
-          status={this.getStatus()}
-          progress={this.getProgress()}
-        />
-        <Controls
-          start={this.startTimer}
-          reset={this.resetTimer}
-          pause={this.pauseTimer}
-          status={this.getStatus()}
-        />
-        <Shortcuts />
-        <ToggleSound sound={sound} toggleSound={this.handleToggleSound} />
+      <div className="Content">
+        <div className="Pomodoro">
+          <TypeSelect
+            types={types}
+            selected={selectedType}
+            changeType={this.changeType}
+          />
+          <TimeDisplay
+            time={time}
+            status={this.getStatus()}
+            progress={this.getProgress()}
+          />
+          <Controls
+            start={this.startTimer}
+            reset={this.resetTimer}
+            pause={this.pauseTimer}
+            status={this.getStatus()}
+          />
+          <ToggleTask task={taskStatus} toggleTask={this.handleToggleTask} />
+          <Shortcuts />
+          <ToggleSound sound={sound} toggleSound={this.handleToggleSound} />
+        </div>
+        {taskStatus && (
+          <div className="TaskPainel">
+            <TaskList />
+          </div>
+        )}
       </div>
     );
   }

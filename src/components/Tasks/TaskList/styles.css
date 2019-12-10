@@ -1,0 +1,51 @@
+.Tasks {
+  width: 400px;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.Tasks .Tasks-box {
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+  transition: opacity 0.3s;
+}
+
+.Task {
+  width: 400px;
+  background: #fff;
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 15px;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  color: #666;
+  cursor: grab;
+}
+
+.Task input {
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  border: none;
+  outline: none;
+}
+.Task span {
+  display: inline-block;
+  font-family: monospace;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px #fff;
+  color: #333;
+  font-size: 11px;
+  margin: 0 0.15em;
+  padding: 0.25em 0.7em;
+  white-space: nowrap;
+  width: 70px;
+  text-align: center;
+  cursor: pointer;
+}
