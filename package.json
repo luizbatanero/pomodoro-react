@@ -5,7 +5,7 @@
   "homepage": "https://luizbatanero.github.io/pomodoro-react",
   "dependencies": {
     "gh-pages": "^2.0.1",
-    "immer": "^5.0.0",
+    "immer": "^9.0.6",
     "react": "^16.8.6",
     "react-dnd": "^9.4.0",
     "react-dnd-html5-backend": "^9.4.0",
