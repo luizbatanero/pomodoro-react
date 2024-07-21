@@ -6,9 +6,9 @@ import Pomodoro from './containers/Pomodoro';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <DndProvider backend={HTML5Backend}>
+  <React.StrictMode>Test
+    {/* <DndProvider backend={HTML5Backend}>
       <Pomodoro />
-    </DndProvider>,
+    </DndProvider>, */}
   </React.StrictMode>
 );
