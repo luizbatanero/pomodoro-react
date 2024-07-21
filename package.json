@@ -4,13 +4,14 @@
   "private": true,
   "homepage": "https://luizbatanero.github.io/pomodoro-react",
   "dependencies": {
-    "gh-pages": "^2.0.1",
+    "ajv": "^8.17.1",
+    "gh-pages": "^6.1.1",
     "immer": "^5.0.0",
-    "react": "^16.8.6",
-    "react-dnd": "^9.4.0",
+    "react": "^18.2.0",
+    "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "^9.4.0",
-    "react-dom": "^16.8.6",
-    "react-scripts": "5.0.1"
+    "react-dom": "^18.2.0",
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
